@@ -1,0 +1,198 @@
+[
+   {
+      "jamCuaca": "2024-08-17 00:00:00",
+      "tempC": "23",
+      "cuaca": "Berawan",
+      "humidity": "92",
+      "kodeCuaca": "3"
+   },
+   {
+      "jamCuaca": "2024-08-17 06:00:00",
+      "tempC": "24",
+      "cuaca": "Cerah Berawan",
+      "humidity": "88",
+      "kodeCuaca": "2"
+   },
+   {
+      "jamCuaca": "2024-08-17 12:00:00",
+      "tempC": "30",
+      "cuaca": "Hujan Sedang",
+      "humidity": "75",
+      "kodeCuaca": "61"
+   },
+   {
+      "jamCuaca": "2024-08-17 18:00:00",
+      "tempC": "27",
+      "cuaca": "Hujan Petir",
+      "humidity": "82",
+      "kodeCuaca": "95"
+   },
+   {
+      "jamCuaca": "2024-08-18 00:00:00",
+      "tempC": "22",
+      "cuaca": "Cerah Berawan",
+      "humidity": "90",
+      "kodeCuaca": "1"
+   },
+   {
+      "jamCuaca": "2024-08-18 06:00:00",
+      "tempC": "23",
+      "cuaca": "Cerah",
+      "humidity": "87",
+      "kodeCuaca": "0"
+   },
+   {
+      "jamCuaca": "2024-08-18 12:00:00",
+      "tempC": "31",
+      "cuaca": "Berawan Tebal",
+      "humidity": "78",
+      "kodeCuaca": "4"
+   },
+   {
+      "jamCuaca": "2024-08-18 18:00:00",
+      "tempC": "28",
+      "cuaca": "Hujan Ringan",
+      "humidity": "80",
+      "kodeCuaca": "60"
+   },
+   {
+      "jamCuaca": "2024-08-19 00:00:00",
+      "tempC": "22",
+      "cuaca": "Kabut",
+      "humidity": "91",
+      "kodeCuaca": "45"
+   },
+   {
+      "jamCuaca": "2024-08-19 06:00:00",
+      "tempC": "23",
+      "cuaca": "Cerah Berawan",
+      "humidity": "89",
+      "kodeCuaca": "1"
+   },
+   {
+      "jamCuaca": "2024-08-19 12:00:00",
+      "tempC": "30",
+      "cuaca": "Hujan Lokal",
+      "humidity": "79",
+      "kodeCuaca": "80"
+   },
+   {
+      "jamCuaca": "2024-08-19 18:00:00",
+      "tempC": "28",
+      "cuaca": "Hujan Petir",
+      "humidity": "84",
+      "kodeCuaca": "97"
+   },
+   {
+      "jamCuaca": "2024-08-20 00:00:00",
+      "tempC": "21",
+      "cuaca": "Udara Kabur",
+      "humidity": "92",
+      "kodeCuaca": "5"
+   },
+   {
+      "jamCuaca": "2024-08-20 06:00:00",
+      "tempC": "24",
+      "cuaca": "Cerah",
+      "humidity": "85",
+      "kodeCuaca": "0"
+   },
+   {
+      "jamCuaca": "2024-08-20 12:00:00",
+      "tempC": "30",
+      "cuaca": "Berawan",
+      "humidity": "77",
+      "kodeCuaca": "3"
+   },
+   {
+      "jamCuaca": "2024-08-20 18:00:00",
+      "tempC": "27",
+      "cuaca": "Hujan Sedang",
+      "humidity": "83",
+      "kodeCuaca": "61"
+   },
+   {
+      "jamCuaca": "2024-08-21 00:00:00",
+      "tempC": "22",
+      "cuaca": "Cerah Berawan",
+      "humidity": "90",
+      "kodeCuaca": "2"
+   },
+   {
+      "jamCuaca": "2024-08-21 06:00:00",
+      "tempC": "23",
+      "cuaca": "Cerah",
+      "humidity": "87",
+      "kodeCuaca": "0"
+   },
+   {
+      "jamCuaca": "2024-08-21 12:00:00",
+      "tempC": "30",
+      "cuaca": "Berawan Tebal",
+      "humidity": "79",
+      "kodeCuaca": "4"
+   },
+   {
+      "jamCuaca": "2024-08-21 18:00:00",
+      "tempC": "28",
+      "cuaca": "Hujan Lokal",
+      "humidity": "82",
+      "kodeCuaca": "80"
+   },
+   {
+      "jamCuaca": "2024-08-22 00:00:00",
+      "tempC": "22",
+      "cuaca": "Cerah",
+      "humidity": "89",
+      "kodeCuaca": "0"
+   },
+   {
+      "jamCuaca": "2024-08-22 06:00:00",
+      "tempC": "23",
+      "cuaca": "Cerah Berawan",
+      "humidity": "88",
+      "kodeCuaca": "1"
+   },
+   {
+      "jamCuaca": "2024-08-22 12:00:00",
+      "tempC": "31",
+      "cuaca": "Hujan Sedang",
+      "humidity": "76",
+      "kodeCuaca": "61"
+   },
+   {
+      "jamCuaca": "2024-08-22 18:00:00",
+      "tempC": "29",
+      "cuaca": "Hujan Petir",
+      "humidity": "84",
+      "kodeCuaca": "95"
+   },
+   {
+      "jamCuaca": "2024-08-23 00:00:00",
+      "tempC": "21",
+      "cuaca": "Udara Kabur",
+      "humidity": "92",
+      "kodeCuaca": "5"
+   },
+   {
+      "jamCuaca": "2024-08-23 06:00:00",
+      "tempC": "23",
+      "cuaca": "Cerah",
+      "humidity": "86",
+      "kodeCuaca": "0"
+   },
+   {
+      "jamCuaca": "2024-08-23 12:00:00",
+      "tempC": "30",
+      "cuaca": "Berawan Tebal",
+      "humidity": "78",
+      "kodeCuaca": "4"
+   },
+   {
+      "jamCuaca": "2024-08-23 18:00:00",
+      "tempC": "28",
+      "cuaca": "Hujan Lokal",
+      "humidity": "83",
+      "kodeCuaca": "80"
+   }
+]
