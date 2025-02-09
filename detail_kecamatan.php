@@ -54,13 +54,13 @@ function get_provinsi_icon($nama_provinsi) {
 $icon_url = get_provinsi_icon($provinsi_nama);
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuaca <?php echo htmlspecialchars($provinsi_nama); ?></title>
-</head>
+</head> -->
 <body class="bg-white text-white dark:bg-gray-900">
     <?php include("component/header.php") ?>
     <?php include("component/navbar.php") ?>
@@ -97,7 +97,7 @@ $icon_url = get_provinsi_icon($provinsi_nama);
                ?>
                   <div class="mb-4 p-4 bg-gray-800 rounded-lg shadow-lg">
                      <div class="flex items-center mb-4">
-                        <a href="#" class="group inline-flex items-center hover:text-blue-500 transition-colors">  
+                        <a href="detail_desa.php?desa=<?php echo htmlspecialchars($lokasiData['adm4']); ?>" class="group inline-flex items-center hover:text-blue-500 transition-colors">  
                            <span class="font-bold text-xl mr-2">  
                               <?php echo htmlspecialchars($lokasiData['desa'] ?? 'Tidak Diketahui'); ?>  
                            </span>  
@@ -105,7 +105,7 @@ $icon_url = get_provinsi_icon($provinsi_nama);
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>  
                            </svg>  
                         </a>  
-                        <span class="ml-auto text-lg">Kec. <?php echo htmlspecialchars($lokasiData['kecamatan']); ?> - Kelurahan / Desa. <?php echo htmlspecialchars($lokasiData['desa']); ?></span>
+                        <span class="ml-auto text-lg">Kec. <b><?php echo htmlspecialchars($lokasiData['kecamatan']); ?></b> - Kelurahan / Desa. <b><?php echo htmlspecialchars($lokasiData['desa']); ?></b></span>
                      </div>
 
                      <?php if (!empty($cuacaData)) { ?>
