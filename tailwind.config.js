@@ -1,8 +1,7 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-   content: ["./*.php"], // Mengambil semua file .html di direktori yang sama
-   theme: {
-      extend: {},
-   },
-   plugins: [],
+  content: ['./*.php', './**/*.php'], // Ini akan mencakup semua file PHP di subdirektori juga
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 };

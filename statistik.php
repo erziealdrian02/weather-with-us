@@ -1,5 +1,5 @@
 <?php
-include './process/koneksi.php';
+// include './process/koneksi.php';
 ?>
 
 <!DOCTYPE html>
