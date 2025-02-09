@@ -153,7 +153,7 @@ function addSpace($string)
                     <div style='text-align: center;'>
                         <b><?php echo $id; ?></br><?php echo $kota; ?></b>
                         <br>
-                        <a href='provinsi_detail.php?provinsi=<?php echo $provinsi_link ?>' style='color: black; text-decoration: none;'><?php echo $provinsi; ?></a>
+                        <a href='detail_provinsi.php?provinsi=<?php echo $provinsi_link ?>' style='color: black; text-decoration: none;'><?php echo $provinsi; ?></a>
                         <br>
                         <p><?php echo htmlspecialchars($deskripsiCuaca); ?></p>
                         <?php if ($kodeCuaca) { ?>

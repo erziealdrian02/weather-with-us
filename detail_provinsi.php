@@ -64,10 +64,10 @@ $icon_url = get_provinsi_icon($provinsi_nama);
     <?php include("component/navbar.php") ?>
 
     <div class="container mx-auto p-4">
-        <div class="flex justify-center mb-5">
-            <img src="<?php echo $icon_url; ?>" alt="Logo Provinsi" class="w-12 mr-2" />  
-            <h1 class="text-4xl font-bold"><?php echo htmlspecialchars($provinsi_nama); ?></h1>
-        </div>
+        <div class="flex items-center justify-center mb-5 space-x-2">  
+            <img src="<?php echo $icon_url; ?>" alt="Logo Provinsi" class="w-8" />  
+            <h1 class="text-2xl font-bold"><?php echo htmlspecialchars($provinsi_nama); ?></h1>  
+        </div>  
 
         <div class="flex justify-between items-center mb-4">
             <div>
@@ -87,11 +87,11 @@ $icon_url = get_provinsi_icon($provinsi_nama);
                ?>
                   <div class="mb-4 p-4 bg-gray-800 rounded-lg shadow-lg">
                      <div class="flex items-center mb-4">
-                        <a href="#" class="group inline-flex items-center hover:text-blue-500 transition-colors">  
+                        <a href="detail_kabupaten.php?kabupaten=<?php echo htmlspecialchars($lokasiData['adm2']); ?>" class="group inline-flex items-center hover:text-blue-500 transition-colors">  
                            <span class="font-bold text-xl mr-2">  
                               <?php echo htmlspecialchars($lokasiData['kotkab'] ?? 'Tidak Diketahui'); ?>  
                            </span>  
-                           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-2 rotate-45 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">  
+                           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-2 -rotate-45 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">  
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>  
                            </svg>  
                         </a>  

@@ -48,7 +48,7 @@ function insertDash($string) {
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             <?php foreach ($provinces as $provinsi) { ?>
                 <div class="rounded-lg shadow transition transform hover:scale-105 hover:shadow-lg">
-                    <a href="provinsi_detail.php?provinsi=<?php echo urlencode($provinsi['kode_provinsi']); ?>" class="block">
+                    <a href="detail_provinsi.php?provinsi=<?php echo urlencode($provinsi['kode_provinsi']); ?>" class="block">
                         <div class="flex justify-start p-4 hover:bg-gray-700 hover:rounded-lg">
                             <img src="<?php echo $imageUrl . insertDash($provinsi['nama_gambar']) . ".png"; ?>" 
                                 alt="<?php echo htmlspecialchars($provinsi['nama_gambar']); ?>" 
