@@ -13,13 +13,13 @@
                     <a href="#" class="hover:underline me-4 md:me-6">Provinsi</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Statistik</a>
+                    <!-- <a href="#" class="hover:underline me-4 md:me-6">Statistik</a> -->
                 </li>
                 <li>
                     <a href="#" class="hover:underline me-4 md:me-6">Maps</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Profile</a>
+                    <a href="https://erziealdrian02.github.io/" class="hover:underline me-4 md:me-6">Profile</a>
                 </li>
             </ul>
         </div>

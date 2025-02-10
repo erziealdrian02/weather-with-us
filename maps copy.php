@@ -4,6 +4,7 @@ include './process/koneksi_api.php';
 
 $rows = explode("\n", trim($wilayah_baru));
 
+// Mengambil hanya data provinsi
 $provinces = [];
 foreach ($rows as $row) {
     $cols = str_getcsv($row);
@@ -25,7 +26,7 @@ foreach ($rows as $row) {
     }
 }
 
-function insert_Dash($string) {
+function insertDash($string) {
     return strtolower(str_replace(' ', '-', $string));
 }
 
@@ -88,66 +89,20 @@ foreach ($provinces as $province) {
     }
 }
 
-// Fungsi untuk mendapatkan data unik berdasarkan provinsi
-function getUniqueProvinces($weatherData) {
-    $seen = [];
-    $uniqueData = [];
-    foreach ($weatherData as $data) {
-        $provinsi = $data['lokasi']['provinsi'];
-        if (!in_array($provinsi, $seen)) {
-            $uniqueData[] = $data;
-            $seen[] = $provinsi;
-        }
-    }
-    return $uniqueData;
-}
-
-// Get unique provinces
-$uniqueProvincesData = getUniqueProvinces($weatherData);
-
-function getMajorCities($weatherData) {
-    $majorCities = [];
-    foreach ($weatherData as $data) {
-        if (strpos(strtoupper($data['lokasi']['kotkab']), 'KOTA') === 0) {
-            $majorCities[] = $data;
-        }
-    }
-    return $majorCities;
-}
-
-$majorCitiesData = getMajorCities($weatherData);
-
-// Function to format province names for URLs
-function formatProvinceUrl($string) {
-    $exceptions = [
-        "KEPULAUAN BANGKA BELITUNG" => "kepulauan-bangka-belitung",
-        "DKI JAKARTA" => "dki-jakarta",
-        "DI YOGYAKARTA" => "di-yogyakarta"
-    ];
-    
-    $normalized = strtolower($string);
-    if (array_key_exists(strtoupper($string), $exceptions)) {
-        return $exceptions[strtoupper($string)];
-    }
-    
-    return str_replace(' ', '-', $normalized);
-}
-
-// Function to format display names
-function formatDisplayName($string) {
-    return ucwords(strtolower($string));
-}
+// echo "<pre>";
+// print_r($weatherData);
+// echo "</pre>";
 ?>
 
 <body class="bg-white text-white dark:bg-gray-900">
     <!-- Navbar -->
     <?php include("component/header.php"); ?>
-    <?php include("component/navbar.php") ?>
+    <?php include("component/navbar.php"); ?>
 
     <div class="container mx-auto p-4">
         <div class="flex justify-center mb-5">
             <img
-                src="https://www.bmkg.go.id/asset/img/id.png"
+                src="https://www.bmkg.go.id/images/id.png"
                 alt="Logo"
                 class="w-12 mr-2" />
             <h1 class="text-4xl font-bold">
@@ -181,128 +136,106 @@ function formatDisplayName($string) {
     </div>
 
     <script>
+        // Inisialisasi peta
         var map = L.map("map", {
-            center: [-2.548926, 118.0148634],
+            center: [-2.548926, 118.0148634], // Koordinat tengah Indonesia
             zoom: 5,
-            minZoom: 5,
+            minZoom: 5, // Set minZoom untuk mencegah zoom out lebih jauh
             maxBounds: [
-                [-11.0, 94.0],
-                [6.0, 141.0],
+                [-11.0, 94.0], // Batas Selatan-Barat Indonesia
+                [6.0, 141.0], // Batas Utara-Timur Indonesia
             ],
         });
 
+        // Tambahkan layer peta dari OpenStreetMap
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            attribution: ' &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             maxZoom: 18,
         }).addTo(map);
 
-        var kotaMarkers = [];
+        // Marker untuk ibukota provinsi
+        var ibukotaMarkers = [];
         var semuaMarkers = [];
 
-        // First, create markers for major cities
         <?php
-        foreach ($majorCitiesData as $data) {
-            $lokasi = $data['lokasi'];
-            $cuaca = $data['cuaca'];
-            
-            $lat = $lokasi['lat'];
-            $lon = $lokasi['lon'];
-            $kota = htmlspecialchars($lokasi['kotkab']);
-            $provinsi = htmlspecialchars($lokasi['provinsi']);
-            $provinsi_link = formatProvinceUrl($provinsi);
-            
-            $kodeCuaca = $cuaca['kodeCuaca'] ?? '';
-            $deskripsiCuaca = $cuaca['cuaca'] ?? 'Data tidak tersedia';
-        ?>
-            var marker = L.marker([<?php echo $lat; ?>, <?php echo $lon; ?>])
-                .bindPopup(`
-                    <div style='text-align: center;'>
-                        <b><?php echo $kota; ?></b>
-                        <br>
-                        <a href='detail_provinsi.php?provinsi=<?php echo $provinsi_link ?>' style='color: black; text-decoration: none;'>
-                            <?php echo formatDisplayName($provinsi); ?>
-                        </a>
-                        <br>
-                        <p><?php echo htmlspecialchars($deskripsiCuaca); ?></p>
-                        <?php if ($kodeCuaca) { ?>
-                            <img src='https://ibnux.github.io/BMKG-importer/icon/<?php echo $kodeCuaca; ?>.png' alt='Weather Icon' class='mx-auto w-20' />
-                        <?php } ?>
-                    </div>
-                `);
-            kotaMarkers.push(marker);
-        <?php } ?>
+        foreach ($weatherData as $weather) {
+            $id = $weather['lokasi']['adm2'];
+            $lat = $weather['lokasi']['lon'];
+            $lon = $weather['lokasi']['lat'];
+            $provinsi_link = $weather['lokasi']['provinsi'];
+            $kota = htmlspecialchars($weather['cuaca']['kotkab']);
+            $provinsi = htmlspecialchars($weather['lokasi']['provinsi']);
 
-        // Then, create markers for all locations
-        <?php
-        foreach ($weatherData as $data) {
-            $lokasi = $data['lokasi'];
-            $cuaca = $data['cuaca'];
-            
-            $lat = $lokasi['lat'];
-            $lon = $lokasi['lon'];
-            $kota = htmlspecialchars($lokasi['kotkab']);
-            $provinsi = htmlspecialchars($lokasi['provinsi']);
-            $provinsi_link = formatProvinceUrl($provinsi);
-            
-            $kodeCuaca = $cuaca['kodeCuaca'] ?? '';
-            $deskripsiCuaca = $cuaca['cuaca'] ?? 'Data tidak tersedia';
+            // Ambil data cuaca untuk wilayah ini
+            $weatherData = getWeatherData($id);
+            $currentDate = date("Y-m-d");
+
+            // Filter data cuaca untuk tanggal saat ini
+            $filteredWeatherData = array_filter($weatherData, function ($weather) use ($currentDate) {
+                return date("Y-m-d", strtotime($weather['lokasi']['local_datetime'])) === $currentDate;
+            });
+
+            // Ambil cuaca pertama dari data yang difilter
+            $cuacaHariIni = !empty($filteredWeatherData) ? reset($filteredWeatherData) : null;
+            $deskripsiCuaca = $cuacaHariIni ? $cuacaHariIni['lokasi']['weather_desc'] : 'Data tidak tersedia';
+            $kodeCuaca = $cuacaHariIni ? $cuacaHariIni['lokasi']['image'] : '';
+
+            // Tentukan apakah marker ini adalah ibukota provinsi
+            $isIbukota = in_array($row, $uniqueProvincesData);
         ?>
+
             var marker = L.marker([<?php echo $lat; ?>, <?php echo $lon; ?>])
                 .bindPopup(`
                     <div style='text-align: center;'>
-                        <b><?php echo $kota; ?></b>
+                        <b><?php echo $id; ?></br><?php echo $kota; ?></b>
                         <br>
-                        <a href='detail_provinsi.php?provinsi=<?php echo $provinsi_link ?>' style='color: black; text-decoration: none;'>
-                            <?php echo formatDisplayName($provinsi); ?>
-                        </a>
+                        <a href='detail_provinsi.php?provinsi=<?php echo $provinsi_link ?>' style='color: black; text-decoration: none;'><?php echo $provinsi; ?></a>
                         <br>
                         <p><?php echo htmlspecialchars($deskripsiCuaca); ?></p>
                         <?php if ($kodeCuaca) { ?>
-                            <img src='https://ibnux.github.io/BMKG-importer/icon/<?php echo $kodeCuaca; ?>.png' alt='Weather Icon' class='mx-auto w-20' />
+                            <img src='<?php echo $kodeCuaca; ?>' alt='Weather Icon' class='mx-auto w-20' />
                         <?php } ?>
                     </div>
                 `);
             semuaMarkers.push(marker);
+
+            if (<?php echo $isIbukota ? 'true' : 'false'; ?>) {
+                ibukotaMarkers.push(marker); // Tambahkan ke array ibukotaMarkers jika marker adalah ibukota
+                marker.addTo(map); // Tambahkan hanya marker ibukota ke peta secara default
+            }
+
         <?php } ?>
 
-        // Function to show only major cities
-        function tampilkanKotaMarkers() {
-            // Remove all markers first
-            semuaMarkers.forEach(function(marker) {
-                map.removeLayer(marker);
-            });
-            // Add only major city markers
-            kotaMarkers.forEach(function(marker) {
-                marker.addTo(map);
-            });
-        }
-
-        // Function to show all markers
+        // Fungsi untuk menampilkan semua marker
         function tampilkanSemuaMarkers() {
             semuaMarkers.forEach(function(marker) {
                 marker.addTo(map);
             });
         }
 
-        // Zoom event handler
+        // Fungsi untuk hanya menampilkan marker ibukota
+        function tampilkanIbukotaMarkers() {
+            ibukotaMarkers.forEach(function(marker) {
+                marker.addTo(map);
+            });
+        }
+
+        // Event listener untuk zoom
         map.on('zoomend', function() {
-            if (map.getZoom() < 7) {
-                // At lower zoom levels, show only major cities
+            if (map.getZoom() < 7) { // Pada zoom level rendah, tampilkan hanya ibukota
                 semuaMarkers.forEach(function(marker) {
                     map.removeLayer(marker);
                 });
-                tampilkanKotaMarkers();
-            } else {
-                // At higher zoom levels, show all locations
+                tampilkanIbukotaMarkers();
+            } else { // Pada zoom level tinggi, tampilkan semua marker
                 tampilkanSemuaMarkers();
             }
         });
 
-        // Initially show only major cities
-        tampilkanKotaMarkers();
+        // Atur tampilan awal (zoom level rendah)
+        tampilkanIbukotaMarkers();
     </script>
 
-        
     <?php include("component/footer.php") ?>
     <?php include("component/script.php") ?>
 </body>
